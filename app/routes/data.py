@@ -14,7 +14,7 @@ async def get_hand_data(link: str) -> HandData:
     all_hands = []
 
     async with httpx.AsyncClient() as client:
-        while hand_number < 100:
+        while True:
             response = await client.get(base_url, params={"hand_number": hand_number})
 
             if response.status_code == 429:
