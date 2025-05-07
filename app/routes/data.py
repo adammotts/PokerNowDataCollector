@@ -14,6 +14,7 @@ async def get_hand_data(link: str) -> HandData:
 
     async with httpx.AsyncClient() as client:
         while True:
+            print(f"Fetching hand number {i}...")
             response = await client.get(poker_now_api_url, params={"hand_number": i})
             hand_data = response.json()
             if hand_data == []:
