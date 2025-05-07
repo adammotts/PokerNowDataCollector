@@ -5,9 +5,7 @@ import asyncio
 
 router = APIRouter()
 
-@router.get("/")
-
-@router.post("/")
+@router.get("")
 async def get_hand_data(link: str) -> HandData:
     game_id = link.split("/")[-1]
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
