@@ -21,7 +21,7 @@ async def get_hand_data(link: str) -> HandData:
 
             if response.status_code == 429:
                 print(f"Rate limited at hand {hand_number}, backing off...")
-                await asyncio.sleep(2)
+                await asyncio.sleep(4)
                 continue
 
             if response.status_code != 200:
