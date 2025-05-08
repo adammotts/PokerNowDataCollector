@@ -31,7 +31,7 @@ class GameDataModel:
        
         return [GameData(**game) for game in game_data_list]
 
-    async def delete_all_bathrooms(self) -> None:
+    async def delete_all_game_data(self) -> None:
         await self.collection.delete_many({})
 
 game_data_model = GameDataModel()
