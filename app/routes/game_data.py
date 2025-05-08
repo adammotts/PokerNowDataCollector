@@ -1,12 +1,12 @@
 from fastapi import APIRouter
-from app.schema.data import HandData
+from app.schema.game_data import GameData
 import httpx
 import asyncio
 
 router = APIRouter()
 
 @router.get("")
-async def get_hand_data(link: str) -> HandData:
+async def get_hand_data(link: str) -> GameData:
     game_id = link.split("/")[-1]
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
     
@@ -37,4 +37,4 @@ async def get_hand_data(link: str) -> HandData:
             all_hands.extend(hand)
             hand_number += 1
 
-    return HandData(data=all_hands)
+    return GameData(data=all_hands)
