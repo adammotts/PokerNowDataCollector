@@ -2,7 +2,8 @@ from pydantic import BaseModel
 from typing import List
 
 class HandData(BaseModel):
-    data: List
+    hand_number: int
+    data: List[str]
 
     class Config:
         from_attributes = True
@@ -13,3 +14,7 @@ class GameData(BaseModel):
 
     class Config:
         from_attributes = True
+
+class CreateGameDataRequest(BaseModel):
+    game_id: str
+    hand_data: List[HandData]
