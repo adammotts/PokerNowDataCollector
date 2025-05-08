@@ -2,3 +2,4 @@
 venv
 .env
 lambda_package
+test_lambda.py
