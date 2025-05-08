@@ -15,6 +15,6 @@ class GameData(BaseModel):
     class Config:
         from_attributes = True
 
-class CreateGameDataRequest(BaseModel):
+class UpdateGameDataRequest(BaseModel):
     game_id: str
     hand_data: List[HandData]

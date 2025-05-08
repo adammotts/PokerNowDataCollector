@@ -1,17 +1,17 @@
 from fastapi import APIRouter
-from app.schema.game_data import GameData, HandData, CreateGameDataRequest
+from app.schema.game_data import GameData, HandData, UpdateGameDataRequest
 from app.models.game_data import game_data_model
 import httpx
 import asyncio
 
 router = APIRouter()
 
-@router.post("/bulk")
-async def record_game_data(game_data: CreateGameDataRequest):
+@router.post("")
+async def bulk_record_hand_data(game_data: UpdateGameDataRequest):
     await game_data_model.create_game_data(**game_data)
 
 @router.get("")
-async def get_hand_data(link: str) -> GameData:
+async def get_game_data(link: str) -> GameData:
     game_id = link.split("/")[-1]
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
     
