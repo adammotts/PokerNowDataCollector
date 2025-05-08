@@ -11,8 +11,8 @@ async def bulk_record_hand_data(game_data: UpdateGameDataRequest):
     await game_data_model.create_game_data(**game_data)
 
 @router.get("")
-async def get_game_data(link: str) -> GameData:
-    game_id = link.split("/")[-1]
+async def get_game_data(pokernow_url: str) -> GameData:
+    game_id = pokernow_url.split("/")[-1]
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
     
     hand_number = 1
