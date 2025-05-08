@@ -42,4 +42,5 @@ async def get_game_data(link: str) -> GameData:
             all_hands.append(HandData(hand_number=hand_number, data=[message["msg"] for message in hand]))
             hand_number += 1
 
+    await game_data_model.create_game_data(game_id=game_id, hand_data=[hand.model_dump() for hand in all_hands])
     return GameData(game_id=game_id, hand_data=all_hands)
