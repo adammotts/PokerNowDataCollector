@@ -19,7 +19,7 @@ async def get_game_data(pokernow_url: str) -> GameData:
     all_hands = []
 
     async with httpx.AsyncClient() as client:
-        while hand_number < 20:
+        while True:
             response = await client.get(base_url, params={"hand_number": hand_number})
 
             if response.status_code == 429:
