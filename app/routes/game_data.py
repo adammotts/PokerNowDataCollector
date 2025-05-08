@@ -6,15 +6,15 @@ import asyncio
 
 router = APIRouter()
 
-@router.get("")
-async def get_hand_data(link: str) -> GameData:
+@router.post("")
+async def get_hand_data(link: str):
     game_id = link.split("/")[-1]
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
     
     hand_number = 1
 
     async with httpx.AsyncClient() as client:
-        while hand_number < 20:
+        while True:
             response = await client.get(base_url, params={"hand_number": hand_number})
 
             if response.status_code == 429:
@@ -34,5 +34,5 @@ async def get_hand_data(link: str) -> GameData:
             if not hand:
                 break
 
-            game_data_model.create_game_data(game_id=game_id, hand_data=hand)
+            await game_data_model.create_game_data(game_id=game_id, hand_data=hand)
             hand_number += 1

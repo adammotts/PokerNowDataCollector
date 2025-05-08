@@ -1,4 +1,3 @@
-# app/core/config.py
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
@@ -8,7 +7,6 @@ class Settings(BaseSettings):
     DATABASE_NAME: str = "pokernow_db"
     SECRET_KEY: str = "pokernow"
     ALGORITHM: str = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int
 
     class Config:
         env_file = ".env"
