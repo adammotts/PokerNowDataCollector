@@ -1,5 +1,6 @@
 from fastapi import APIRouter
 from app.schema.game_data import GameData
+from app.models.game_data import game_data_model
 import httpx
 import asyncio
 
@@ -11,10 +12,9 @@ async def get_hand_data(link: str) -> GameData:
     base_url = f"https://www.pokernow.club/api/games/{game_id}/log_v3"
     
     hand_number = 1
-    all_hands = []
 
     async with httpx.AsyncClient() as client:
-        while True:
+        while hand_number < 20:
             response = await client.get(base_url, params={"hand_number": hand_number})
 
             if response.status_code == 429:
@@ -34,7 +34,5 @@ async def get_hand_data(link: str) -> GameData:
             if not hand:
                 break
 
-            all_hands.extend(hand)
+            game_data_model.create_game_data(game_id=game_id, hand_data=hand)
             hand_number += 1
-
-    return GameData(data=all_hands)

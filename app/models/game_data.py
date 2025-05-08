@@ -34,4 +34,4 @@ class GameDataModel:
     async def delete_all_bathrooms(self) -> None:
         await self.collection.delete_many({})
 
-game_data_model = GameData()
+game_data_model = GameDataModel()
